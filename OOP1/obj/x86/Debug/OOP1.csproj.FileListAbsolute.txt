@@ -1,0 +1,12 @@
+S:\OOP1\OOP1\bin\Debug\OOP1.exe
+S:\OOP1\OOP1\bin\Debug\OOP1.pdb
+S:\OOP1\OOP1\obj\x86\Debug\OOP1.csprojAssemblyReference.cache
+S:\OOP1\OOP1\obj\x86\Debug\OOP1.csproj.CoreCompileInputs.cache
+S:\OOP1\OOP1\obj\x86\Debug\OOP1.exe
+S:\OOP1\OOP1\obj\x86\Debug\OOP1.pdb
+R:\OOP1\OOP1\bin\Debug\OOP1.exe
+R:\OOP1\OOP1\bin\Debug\OOP1.pdb
+R:\OOP1\OOP1\obj\x86\Debug\OOP1.csprojAssemblyReference.cache
+R:\OOP1\OOP1\obj\x86\Debug\OOP1.csproj.CoreCompileInputs.cache
+R:\OOP1\OOP1\obj\x86\Debug\OOP1.exe
+R:\OOP1\OOP1\obj\x86\Debug\OOP1.pdb
