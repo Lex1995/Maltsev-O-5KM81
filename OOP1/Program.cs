@@ -6,9 +6,19 @@ using System.Text.RegularExpressions;
 
 namespace OOP1
 {
-    class Program
+    //TODO: RSDN - исправлено
+    /// <summary>
+    /// Класс для тестирования
+    /// библиотеки PersonLibrary
+    /// </summary>
+    public class Program
     {
-        static void Main(string[] args)
+        //TODO: RSDN - исправлено
+        /// <summary>
+        /// Точка вхождения в программу
+        /// </summary>
+        /// <param name="args">Аргументы</param>
+        public static void Main(string[] args)
         {
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
@@ -22,16 +32,16 @@ namespace OOP1
 
             var peopleForTheFirstList = new Person[]
             {
-                new Person("Max", "Payne",31,GenderType.Male),
-                new Person("Mona","Sax",25,GenderType.Female),
-                new Person("Angelo","Punchinello",47,GenderType.Male)
+                new Person("Max", "Payne", 31, GenderType.Male),
+                new Person("Mona", "Sax" , 25, GenderType.Female),
+                new Person("Angelo" , "Punchinello", 47, GenderType.Male)
             };
 
             var peopleForTheSecondList = new Person[]
             {
-                new Person("Carl","Jones",24,GenderType.Male),
-                new Person("Tommy","Vercetti",35,GenderType.Male),
-                new Person("Mercedes","Cortez",23,GenderType.Female)
+                new Person("Carl", "Jones", 24, GenderType.Male),
+                new Person("Tommy", "Vercetti", 35, GenderType.Male),
+                new Person("Mercedes", "Cortez", 23, GenderType.Female)
             };
 
             foreach (Person person in peopleForTheFirstList)
@@ -77,7 +87,7 @@ namespace OOP1
             PrintEndingStrings();
 
             Console.WriteLine("Create person by console input");
-            secondList.AddPerson(EnterFromConsole.EnterNewPerson());
+            secondList.AddPerson(ConsoleProvider.EnterNewPerson());
             PrintPersonLists(firstList, secondList);
             PrintEndingStrings();
 
@@ -110,13 +120,13 @@ namespace OOP1
                 secondPersonList
             };
 
-            for (int i=0;i<personLists.Length;i++)
+            for (int i = 0; i < personLists.Length; i++)
             {
                 Console.WriteLine($"Список #{i + 1}\n");
 
-                for (int j=0; j<personLists[i].Length;j++)
+                for (int j = 0; j < personLists[i].Length; j++)
                 {
-                    Console.WriteLine(personLists[i][j].FormInfo());
+                    Console.WriteLine(personLists[i][j].GetInfo());
                 }
 
                 Console.WriteLine();

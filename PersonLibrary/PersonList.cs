@@ -5,6 +5,11 @@ using System.Text;
 
 namespace OOP1
 {
+    //TODO: XML - исправлено
+    /// <summary>
+    /// класс, реализующий список людей -
+    /// объектов класса Person
+    /// </summary>
     public class PersonList
     {
         #region Fields
@@ -17,7 +22,10 @@ namespace OOP1
         #endregion
 
         #region Properties
-
+        //TODO: XML - исправлено
+        /// <summary>
+        /// Длина списка персон
+        /// </summary>
         public int Length
         {
             get
@@ -37,7 +45,7 @@ namespace OOP1
         {
             get
             {
-                if (index<0 || index>Length-1)
+                if (index < 0 || index > Length - 1)
                 {
                     throw new IndexOutOfRangeException($"Index must be above zero and than the " + 
                                                        $"size of the collection.");
@@ -66,7 +74,7 @@ namespace OOP1
         public void AddPerson (Person person)
         {
             var buffer = new Person[_people.Length + 1];
-            for (int i=0; i<buffer.Length-1; i++)
+            for (int i = 0; i < buffer.Length - 1; i++)
             {
                 buffer[i] = _people[i];
             }
@@ -98,7 +106,7 @@ namespace OOP1
 
             for (int i = 0; i < _people.Length; i++)
             {
-                if (i!=personIndex)
+                if (i != personIndex)
                 {
                     buffer[counter] = _people[i];
                     counter++;
@@ -116,7 +124,7 @@ namespace OOP1
         {
             for (int i=0; i<_people.Length; i++)
             {
-                if (_people[i]==person)
+                if (_people[i] == person)
                 {
                     return i;
                 }

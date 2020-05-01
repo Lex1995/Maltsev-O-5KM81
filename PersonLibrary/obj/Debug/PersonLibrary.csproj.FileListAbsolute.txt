@@ -1,0 +1,6 @@
+D:\work\Maltsev_OOP1\PersonLibrary\bin\Debug\PersonLibrary.dll
+D:\work\Maltsev_OOP1\PersonLibrary\bin\Debug\PersonLibrary.pdb
+D:\work\Maltsev_OOP1\PersonLibrary\obj\Debug\PersonLibrary.csprojAssemblyReference.cache
+D:\work\Maltsev_OOP1\PersonLibrary\obj\Debug\PersonLibrary.csproj.CoreCompileInputs.cache
+D:\work\Maltsev_OOP1\PersonLibrary\obj\Debug\PersonLibrary.dll
+D:\work\Maltsev_OOP1\PersonLibrary\obj\Debug\PersonLibrary.pdb

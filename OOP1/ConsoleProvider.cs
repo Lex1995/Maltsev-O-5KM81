@@ -5,10 +5,11 @@ using System.Text;
 
 namespace OOP1
 {
+    //TODO: Именование + static - исправлено
     /// <summary>
     /// Ввод данных через консоль
     /// </summary>
-    public class EnterFromConsole
+    public static class ConsoleProvider
     {
         /// <summary>
         /// Создание нового человека с вводом данных из консоли
@@ -82,7 +83,5 @@ namespace OOP1
                 }
             }
         }
-
-
     }
 }

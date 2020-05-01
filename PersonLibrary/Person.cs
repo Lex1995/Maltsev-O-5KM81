@@ -6,8 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace OOP1
 {
+    //TODO: Комментарий - исправлено
     /// <summary>
-    /// класс Person
+    /// класс Person,
+    /// реализующий описание человека
     /// </summary>
     public class Person
     {
@@ -78,7 +80,7 @@ namespace OOP1
             }
             set
             {
-                if (value<0 || value>122)
+                if (value < 0 || value > 122)
                 {
                     throw new ArgumentOutOfRangeException($"{nameof(value)} must be between 0 and 122");
                 } 
@@ -178,7 +180,13 @@ namespace OOP1
             return true;
         }
 
-        public string FormInfo()
+        //TODO: XML - исправлено
+        /// <summary>
+        /// формирование информации о человека
+        /// </summary>
+        /// <returns>строку с именем, фамилией
+        /// возрастом и полом человека</returns>
+        public string GetInfo()
         {
             return $"Имя: {FirstName}\nФамилия: {Surname}\n" +
                    $"Возраст: {Age}\nПол:{Gender}";
