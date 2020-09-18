@@ -24,6 +24,10 @@ namespace MotionView
         public MainForm()
         {
             InitializeComponent();
+
+            #if !DEBUG
+            AddRandomMotionButton.Visible=false;
+            #endif
         }
 
         /// <summary>
@@ -64,6 +68,16 @@ namespace MotionView
             {
                 _motions.RemoveAt(DataMotionsView.SelectedRows[0].Index);
             }
+        }
+
+        /// <summary>
+        /// Событие генерации рандомного уравнения движения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddRandomMotionButton_Click(object sender, EventArgs e)
+        {
+            _motions.Add(RandomMotion.GetRandomMotion());
         }
     }
 }

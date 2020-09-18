@@ -44,10 +44,6 @@ namespace MotionView
         public MotionForm()
         {
             InitializeComponent();
-
-            #if !DEBUG
-            AddRandomMotionButton.Visible=false;
-            #endif
         }
 
         /// <summary>
@@ -273,5 +269,6 @@ namespace MotionView
         {
             Close();
         }
+
     }
 }

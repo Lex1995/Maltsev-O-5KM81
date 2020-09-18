@@ -49,7 +49,6 @@
             this.TextBoxCalculatedCoordinate = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.AddMotionButton = new System.Windows.Forms.Button();
-            this.AddRandomMotionButton = new System.Windows.Forms.Button();
             this.TextBoxMagnitude = new System.Windows.Forms.TextBox();
             this.labelMagnitude = new System.Windows.Forms.Label();
             this.ButtonCancel = new System.Windows.Forms.Button();
@@ -251,15 +250,6 @@
             this.AddMotionButton.UseVisualStyleBackColor = true;
             this.AddMotionButton.Click += new System.EventHandler(this.AddMotionButton_Click);
             // 
-            // AddRandomMotionButton
-            // 
-            this.AddRandomMotionButton.Location = new System.Drawing.Point(102, 327);
-            this.AddRandomMotionButton.Name = "AddRandomMotionButton";
-            this.AddRandomMotionButton.Size = new System.Drawing.Size(75, 23);
-            this.AddRandomMotionButton.TabIndex = 18;
-            this.AddRandomMotionButton.Text = "Random";
-            this.AddRandomMotionButton.UseVisualStyleBackColor = true;
-            // 
             // TextBoxMagnitude
             // 
             this.TextBoxMagnitude.Location = new System.Drawing.Point(224, 224);
@@ -295,7 +285,6 @@
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.labelMagnitude);
             this.Controls.Add(this.TextBoxMagnitude);
-            this.Controls.Add(this.AddRandomMotionButton);
             this.Controls.Add(this.AddMotionButton);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.TextBoxCalculatedCoordinate);
@@ -347,7 +336,6 @@
         private System.Windows.Forms.TextBox TextBoxCalculatedCoordinate;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button AddMotionButton;
-        private System.Windows.Forms.Button AddRandomMotionButton;
         private System.Windows.Forms.TextBox TextBoxMagnitude;
         private System.Windows.Forms.Label labelMagnitude;
         private System.Windows.Forms.Button ButtonCancel;

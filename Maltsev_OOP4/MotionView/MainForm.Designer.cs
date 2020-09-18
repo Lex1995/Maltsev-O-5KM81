@@ -34,6 +34,7 @@
             this.AddMotion = new System.Windows.Forms.Button();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RemoveMotionButton = new System.Windows.Forms.Button();
+            this.AddRandomMotionButton = new System.Windows.Forms.Button();
             this.MotionsGroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataMotionsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
@@ -63,7 +64,7 @@
             // 
             this.AddMotion.Location = new System.Drawing.Point(25, 306);
             this.AddMotion.Name = "AddMotion";
-            this.AddMotion.Size = new System.Drawing.Size(91, 35);
+            this.AddMotion.Size = new System.Drawing.Size(77, 35);
             this.AddMotion.TabIndex = 1;
             this.AddMotion.Text = "Рассчитать координату";
             this.AddMotion.UseVisualStyleBackColor = true;
@@ -75,19 +76,30 @@
             // 
             // RemoveMotionButton
             // 
-            this.RemoveMotionButton.Location = new System.Drawing.Point(145, 306);
+            this.RemoveMotionButton.Location = new System.Drawing.Point(108, 306);
             this.RemoveMotionButton.Name = "RemoveMotionButton";
-            this.RemoveMotionButton.Size = new System.Drawing.Size(99, 35);
+            this.RemoveMotionButton.Size = new System.Drawing.Size(74, 35);
             this.RemoveMotionButton.TabIndex = 3;
             this.RemoveMotionButton.Text = "Удалить расчет";
             this.RemoveMotionButton.UseVisualStyleBackColor = true;
             this.RemoveMotionButton.Click += new System.EventHandler(this.RemoveMotionButton_Click);
+            // 
+            // AddRandomMotionButton
+            // 
+            this.AddRandomMotionButton.Location = new System.Drawing.Point(188, 306);
+            this.AddRandomMotionButton.Name = "AddRandomMotionButton";
+            this.AddRandomMotionButton.Size = new System.Drawing.Size(68, 35);
+            this.AddRandomMotionButton.TabIndex = 4;
+            this.AddRandomMotionButton.Text = "Random";
+            this.AddRandomMotionButton.UseVisualStyleBackColor = true;
+            this.AddRandomMotionButton.Click += new System.EventHandler(this.AddRandomMotionButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 353);
+            this.Controls.Add(this.AddRandomMotionButton);
             this.Controls.Add(this.RemoveMotionButton);
             this.Controls.Add(this.AddMotion);
             this.Controls.Add(this.MotionsGroupbox);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button AddMotion;
         private System.Windows.Forms.BindingSource programBindingSource;
         private System.Windows.Forms.Button RemoveMotionButton;
+        private System.Windows.Forms.Button AddRandomMotionButton;
     }
 }
 
