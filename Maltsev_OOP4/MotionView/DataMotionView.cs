@@ -33,8 +33,8 @@ namespace MotionView
             dataGridView.AutoSizeColumnsMode =
                DataGridViewAutoSizeColumnsMode.Fill;
 
-            dataGridView.Columns[0].Width = 100;
-            dataGridView.Columns[1].Width = 100;
+            dataGridView.Columns[0].Width = 80;
+            dataGridView.Columns[1].Width = 90;
 
             dataGridView.DefaultCellStyle.Alignment =
                 DataGridViewContentAlignment.MiddleCenter;

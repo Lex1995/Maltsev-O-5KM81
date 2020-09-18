@@ -12,3 +12,4 @@ D:\work\Maltsev_OOP4\MotionView\obj\Debug\MotionView.csproj.CopyComplete
 D:\work\Maltsev_OOP4\MotionView\obj\Debug\MotionView.exe
 D:\work\Maltsev_OOP4\MotionView\obj\Debug\MotionView.pdb
 D:\work\Maltsev_OOP4\MotionView\obj\Debug\MotionView.MotionForm.resources
+D:\work\Maltsev_OOP4\MotionView\obj\Debug\MotionView.DataSearchForm.resources

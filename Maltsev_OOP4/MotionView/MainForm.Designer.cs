@@ -35,8 +35,9 @@
             this.RemoveMotionButton = new System.Windows.Forms.Button();
             this.AddRandomMotionButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LoadButton = new System.Windows.Forms.Button();
+            this.SearchCallButton = new System.Windows.Forms.Button();
+            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.MotionsGroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataMotionsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
@@ -102,10 +103,6 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // programBindingSource
-            // 
-            this.programBindingSource.DataSource = typeof(MotionView.Program);
-            // 
             // LoadButton
             // 
             this.LoadButton.Location = new System.Drawing.Point(344, 306);
@@ -116,17 +113,34 @@
             this.LoadButton.UseVisualStyleBackColor = true;
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
+            // SearchCallButton
+            // 
+            this.SearchCallButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SearchCallButton.Location = new System.Drawing.Point(431, 306);
+            this.SearchCallButton.Name = "SearchCallButton";
+            this.SearchCallButton.Size = new System.Drawing.Size(75, 35);
+            this.SearchCallButton.TabIndex = 7;
+            this.SearchCallButton.Text = "Поиск";
+            this.SearchCallButton.UseVisualStyleBackColor = true;
+            this.SearchCallButton.Click += new System.EventHandler(this.SearchCallButton_Click);
+            // 
+            // programBindingSource
+            // 
+            this.programBindingSource.DataSource = typeof(MotionView.Program);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 353);
+            this.Controls.Add(this.SearchCallButton);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.AddRandomMotionButton);
             this.Controls.Add(this.RemoveMotionButton);
             this.Controls.Add(this.AddMotion);
             this.Controls.Add(this.MotionsGroupbox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "MainForm";
             this.Text = "Виды движения";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -147,6 +161,7 @@
         private System.Windows.Forms.Button AddRandomMotionButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button LoadButton;
+        private System.Windows.Forms.Button SearchCallButton;
     }
 }
 

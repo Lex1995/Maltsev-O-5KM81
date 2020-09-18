@@ -152,5 +152,16 @@ namespace MotionView
                 }
             }
         }
+
+        /// <summary>
+        /// Событие вызова поиска
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchCallButton_Click(object sender, EventArgs e)
+        {
+            var search = new DataSearchForm(_motions);
+            search.Show();
+        }
     }
 }
