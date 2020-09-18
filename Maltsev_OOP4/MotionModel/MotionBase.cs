@@ -40,13 +40,7 @@ namespace MotionModel
             }
             set
             {
-                if (double.IsNaN(value) || double.IsInfinity(value))
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть неопределенным");
-                }
-
-                _initialCoordinate = value;
+                _initialCoordinate = NanChecking(value);
             }
         }
 
@@ -62,19 +56,7 @@ namespace MotionModel
 
             set
             {
-                if (double.IsNaN(value) || double.IsInfinity(value))
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть неопределенным");
-                }
-
-                if (value < 0)
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть отрицательным");
-                }
-
-                _time = value;
+               _time = NanAndNegativeChecking(value);
             }
         }
 
@@ -88,6 +70,48 @@ namespace MotionModel
         /// Описание вида движения
         /// </summary>
         public virtual String Description { get;  }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Проверка на неопределенность и отрицательное значение
+        /// </summary>
+        /// <param name="value">число</param>
+        /// <returns>проверенное числовое значение</returns>
+        protected double NanAndNegativeChecking(double value)
+        {
+            if (double.IsNaN(value) || double.IsInfinity(value))
+            {
+                throw new ArgumentException(
+                    "Значение не может быть неопределенным");
+            }
+
+            if (value < 0)
+            {
+                throw new ArgumentException(
+                    "Значение не может быть отрицательным");
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// Проверка на неопределенное значение
+        /// </summary>
+        /// <param name="value">число</param>
+        /// <returns>проверенное числовое значение</returns>
+        protected double NanChecking(double value)
+        {
+            if (double.IsNaN(value) || double.IsInfinity(value))
+            {
+                throw new ArgumentException(
+                    "Значение не может быть неопределенным");
+            }
+
+            return value;
+        }
 
         #endregion
     }

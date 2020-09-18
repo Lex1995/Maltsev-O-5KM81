@@ -46,19 +46,7 @@ namespace MotionModel
 
             set
             {
-                if (double.IsNaN(value) || double.IsInfinity(value))
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть неопределенным");
-                }
-
-                if (value < 0)
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть отрицательным");
-                }
-
-                _magnitude = value;
+                _magnitude = NanAndNegativeChecking(value);
             }
         }
 
@@ -74,13 +62,7 @@ namespace MotionModel
 
             set
             {
-                if (double.IsNaN(value) || double.IsInfinity(value))
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть неопределенным");
-                }
-
-                _initialPhase = value;
+                _initialPhase = NanChecking(value);
             }
         }
 
@@ -96,19 +78,7 @@ namespace MotionModel
 
             set
             {
-                if (double.IsNaN(value) || double.IsInfinity(value))
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть неопределенным");
-                }
-
-                if (value < 0)
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть отрицательным");
-                }
-
-                _frequency = value;
+                _frequency = NanAndNegativeChecking(value);
             }
         }
 

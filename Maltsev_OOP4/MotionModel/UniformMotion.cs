@@ -35,14 +35,8 @@ namespace MotionModel
             }
 
             set
-            {
-                if (double.IsNaN(value) || double.IsInfinity(value))
-                {
-                    throw new ArgumentException(
-                        "Значение не может быть неопределенным");
-                }
-
-                _speed = value;
+            {                
+                _speed = NanChecking(value); 
             }
         }
 
