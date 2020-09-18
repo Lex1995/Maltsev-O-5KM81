@@ -9,6 +9,7 @@ namespace MotionModel
     /// <summary>
     /// класс, описывающий колебательное движение
     /// </summary>
+    [Serializable]
     public class OscillatoryMotion: MotionBase
     {
 
@@ -45,7 +46,19 @@ namespace MotionModel
 
             set
             {
-                _magnitude = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                if (value < 0)
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть отрицательным");
+                }
+
+                _magnitude = value;
             }
         }
 
@@ -61,7 +74,13 @@ namespace MotionModel
 
             set
             {
-                _initialPhase = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                _initialPhase = value;
             }
         }
 
@@ -77,9 +96,45 @@ namespace MotionModel
 
             set
             {
-                _frequency = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                if (value < 0)
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть отрицательным");
+                }
+
+                _frequency = value;
             }
         }
+
+        /// <summary>
+        /// Рассчитанная координата
+        /// </summary>
+        public override double CalculatedCoordinate
+        {
+            get
+            {
+                return base.InitialCoordinate + _magnitude * Math.Sin(
+                        2*Math.PI * _frequency + _initialPhase * Math.PI / 180);
+            }
+        }
+
+        /// <summary>
+        /// Описание типа движения
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Колебательное движение";
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -112,23 +167,20 @@ namespace MotionModel
         /// </summary>
         public OscillatoryMotion() { }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
-        /// расчет координаты при колебательном движении
+        /// Конструктор для колебательного движения через базовые параметры
         /// </summary>
-        /// <returns>полученное значение координаты</returns>
-        public override double MotionCalculation()
+        /// <param name="initialCoordinate">Начальная координата</param>
+        /// <param name="time">Время</param>
+        public OscillatoryMotion
+            (
+            double initialCoordinate,
+            double time
+            )
         {
-            double angleSpeed = 2 * Math.PI * Frequency;
-            double initialPhaseInRadians = InitialPhase * Math.PI / 180;
-            //TODO: RSDN - исправлено
-            return InitialCoordinate + Magnitude * Math.Sin(angleSpeed * Time + 
-                                                            initialPhaseInRadians);
+            InitialCoordinate = initialCoordinate;
+            Time = time;
         }
-
         #endregion
     }
 }

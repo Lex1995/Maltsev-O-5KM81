@@ -9,6 +9,7 @@ namespace MotionModel
     /// <summary>
     /// класс, описывающий равномерное движение
     /// </summary>
+    [Serializable]
     public class UniformMotion: MotionBase
     {
 
@@ -35,11 +36,39 @@ namespace MotionModel
 
             set
             {
-                _speed = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                _speed = value;
             }
         }
 
-        #endregion
+        /// <summary>
+        /// Рассчитанная координата
+        /// </summary>
+        public override double CalculatedCoordinate
+        {
+            get
+            {
+                return base.InitialCoordinate + (_speed * base.Time);
+            }
+        }
+
+        /// <summary>
+        /// Равномерное движение
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Равномерное движение";
+            }
+        }
+        
+ #endregion
 
         #region Constructors
 
@@ -66,18 +95,22 @@ namespace MotionModel
         /// </summary>
         public UniformMotion() { }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
-        /// расчет координаты при равномерном движении
+        /// Конструктор для равномерного движения через базовые параметры
         /// </summary>
-        /// <returns>значение координаты</returns>
-        public override double MotionCalculation()
+        /// <param name="initialCoordinate">начальная координата</param>
+        /// <param name="time">время</param>
+        public UniformMotion
+            (
+            double initialCoordinate, 
+            double time
+            )
         {
-            return InitialCoordinate + (Speed * Time);
+            InitialCoordinate = initialCoordinate;
+            Time = time;
         }
+
         #endregion
+
     }
 }

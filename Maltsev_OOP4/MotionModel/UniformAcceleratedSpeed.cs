@@ -9,6 +9,7 @@ namespace MotionModel
     /// <summary>
     /// класс, описывающий равноускоренное движение
     /// </summary>
+    [Serializable]
     public class UniformAcceleratedMotion: MotionBase
     {
 
@@ -41,7 +42,13 @@ namespace MotionModel
 
             set
             {
-                _initialSpeed = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                _initialSpeed = value;
             }
 
         }
@@ -59,7 +66,36 @@ namespace MotionModel
 
             set
             {
-                _acceleration = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                _acceleration = value;
+            }
+        }
+
+        /// <summary>
+        /// Рассчитанная координата
+        /// </summary>
+        public override double CalculatedCoordinate
+        {
+            get
+            {
+                return base.InitialCoordinate + _initialSpeed * base.Time +
+                        _acceleration * Math.Pow(base.Time, 2) / 2;
+            }
+        }
+
+        /// <summary>
+        /// Описание вида движения
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Равноускоренное движение";
             }
         }
 
@@ -93,20 +129,21 @@ namespace MotionModel
         /// </summary>
         public UniformAcceleratedMotion() { }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
-        /// расчет координаты при равноускоренном движении
+        /// Конструктор равноускоренного движения через базовые параметры
         /// </summary>
-        /// <returns>полученную координату</returns>
-        public override double MotionCalculation()
+        /// <param name="initialCoordinate">Начальная координата</param>
+        /// <param name="time">время</param>
+        public UniformAcceleratedMotion
+           (
+           double initialCoordinate,
+           double time
+           )
         {
-            return InitialCoordinate + InitialSpeed * Time +
-                (Acceleration * Math.Pow(Time, 2) / 2);
+            InitialCoordinate = initialCoordinate;
+            Time = time;
         }
-
         #endregion
+
     }
 }

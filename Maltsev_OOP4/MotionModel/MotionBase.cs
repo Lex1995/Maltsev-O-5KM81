@@ -39,7 +39,13 @@ namespace MotionModel
             }
             set
             {
-                _initialCoordinate = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                _initialCoordinate = value;
             }
         }
 
@@ -55,43 +61,32 @@ namespace MotionModel
 
             set
             {
-                _time = ValueChecking(value);
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть неопределенным");
+                }
+
+                if (value < 0)
+                {
+                    throw new ArgumentException(
+                        "Значение не может быть отрицательным");
+                }
+
+                _time = value;
             }
         }
 
-        #endregion
-
-
-        #region Methods
-
         /// <summary>
-        /// проверка на неопределенность значения и на отрицательное значеник
+        /// Рассчитанная координата
         /// </summary>
-        /// <param name="value">переданное значение</param>
-        /// <returns>проверенное значение</returns>
-        protected double ValueChecking (double value)
-        {
-
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                throw new ArgumentException(
-                    "Значение не может быть неопределенным");
-            }
-
-            if (value < 0)
-            {
-                throw new ArgumentException(
-                    "Значение не может быть отрицательным");
-            }
-
-            return value;
-        }
-
+        public virtual double CalculatedCoordinate { get;  }
+        
+        
         /// <summary>
-        /// Расчет уравнения движения 
+        /// Описание вида движения
         /// </summary>
-        /// <returns></returns>
-        public abstract double MotionCalculation();
+        public virtual String Description { get;  }
 
         #endregion
     }
