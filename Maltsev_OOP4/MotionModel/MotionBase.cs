@@ -9,6 +9,7 @@ namespace MotionModel
     /// <summary>
     /// базовый класс для различных видов движения
     /// </summary>
+    [Serializable]
     public abstract class MotionBase
     {
 

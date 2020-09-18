@@ -32,9 +32,11 @@
             this.MotionsGroupbox = new System.Windows.Forms.GroupBox();
             this.DataMotionsView = new System.Windows.Forms.DataGridView();
             this.AddMotion = new System.Windows.Forms.Button();
-            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RemoveMotionButton = new System.Windows.Forms.Button();
             this.AddRandomMotionButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.LoadButton = new System.Windows.Forms.Button();
             this.MotionsGroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataMotionsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
@@ -70,10 +72,6 @@
             this.AddMotion.UseVisualStyleBackColor = true;
             this.AddMotion.Click += new System.EventHandler(this.AddMotion_Click);
             // 
-            // programBindingSource
-            // 
-            this.programBindingSource.DataSource = typeof(MotionView.Program);
-            // 
             // RemoveMotionButton
             // 
             this.RemoveMotionButton.Location = new System.Drawing.Point(108, 306);
@@ -94,11 +92,37 @@
             this.AddRandomMotionButton.UseVisualStyleBackColor = true;
             this.AddRandomMotionButton.Click += new System.EventHandler(this.AddRandomMotionButton_Click);
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(263, 306);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 35);
+            this.SaveButton.TabIndex = 5;
+            this.SaveButton.Text = "Сохранить";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // programBindingSource
+            // 
+            this.programBindingSource.DataSource = typeof(MotionView.Program);
+            // 
+            // LoadButton
+            // 
+            this.LoadButton.Location = new System.Drawing.Point(344, 306);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(77, 35);
+            this.LoadButton.TabIndex = 6;
+            this.LoadButton.Text = "Загрузить";
+            this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 353);
+            this.Controls.Add(this.LoadButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.AddRandomMotionButton);
             this.Controls.Add(this.RemoveMotionButton);
             this.Controls.Add(this.AddMotion);
@@ -121,6 +145,8 @@
         private System.Windows.Forms.BindingSource programBindingSource;
         private System.Windows.Forms.Button RemoveMotionButton;
         private System.Windows.Forms.Button AddRandomMotionButton;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button LoadButton;
     }
 }
 

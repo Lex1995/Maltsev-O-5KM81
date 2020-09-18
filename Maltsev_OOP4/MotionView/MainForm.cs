@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MotionModel;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MotionView
 {
@@ -78,6 +80,77 @@ namespace MotionView
         private void AddRandomMotionButton_Click(object sender, EventArgs e)
         {
             _motions.Add(RandomMotion.GetRandomMotion());
+        }
+
+        /// <summary>
+        /// Событие вызова сериализации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter= "lekha files (*.lekha)|*.lekha";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var binaryFormatter = new BinaryFormatter();
+                    var filePath = saveFileDialog.FileName;
+
+                    using (var fileStream = new FileStream(filePath,
+                        FileMode.OpenOrCreate))
+                    {
+                        binaryFormatter.Serialize(fileStream, _motions);
+                        MessageBox.Show("Файл сохранен!");
+                    }
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Событие инициализации загрузки файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter= "lekha files (*.lekha)|*.lekha";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog()==DialogResult.OK)
+                {
+                    var formatter = new BinaryFormatter();
+                    var filePath = openFileDialog.FileName;
+
+                    try
+                    {
+                        using (var fileStream = new FileStream(filePath,
+                        FileMode.OpenOrCreate))
+                        {
+                            var newMotions = (BindingList<MotionBase>)formatter.
+                                Deserialize(fileStream);
+
+                            foreach (var motion in newMotions)
+                            {
+                                _motions.Add(motion);
+                            }
+                        }
+                    }
+
+                    catch
+                    {
+                        MessageBox.Show("Файл поврежден, " +
+                            "невозможно загрузить!");
+                    }
+                }
+            }
         }
     }
 }
