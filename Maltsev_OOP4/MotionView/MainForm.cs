@@ -50,5 +50,20 @@ namespace MotionView
                 _motions.Add(motion.MotionDone);
             }
         }
+
+        /// <summary>
+        /// Событие удаления расчета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveMotionButton_Click(object sender, EventArgs e)
+        {
+            var deleteCount = DataMotionsView.SelectedRows.Count;
+
+            for (int i=0; i<deleteCount; i++)
+            {
+                _motions.RemoveAt(DataMotionsView.SelectedRows[0].Index);
+            }
+        }
     }
 }

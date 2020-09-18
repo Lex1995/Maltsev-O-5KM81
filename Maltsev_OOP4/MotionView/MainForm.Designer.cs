@@ -33,6 +33,7 @@
             this.DataMotionsView = new System.Windows.Forms.DataGridView();
             this.AddMotion = new System.Windows.Forms.Button();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.RemoveMotionButton = new System.Windows.Forms.Button();
             this.MotionsGroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataMotionsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
@@ -72,11 +73,22 @@
             // 
             this.programBindingSource.DataSource = typeof(MotionView.Program);
             // 
+            // RemoveMotionButton
+            // 
+            this.RemoveMotionButton.Location = new System.Drawing.Point(145, 306);
+            this.RemoveMotionButton.Name = "RemoveMotionButton";
+            this.RemoveMotionButton.Size = new System.Drawing.Size(99, 35);
+            this.RemoveMotionButton.TabIndex = 3;
+            this.RemoveMotionButton.Text = "Удалить расчет";
+            this.RemoveMotionButton.UseVisualStyleBackColor = true;
+            this.RemoveMotionButton.Click += new System.EventHandler(this.RemoveMotionButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 353);
+            this.Controls.Add(this.RemoveMotionButton);
             this.Controls.Add(this.AddMotion);
             this.Controls.Add(this.MotionsGroupbox);
             this.Name = "MainForm";
@@ -95,6 +107,7 @@
         private System.Windows.Forms.DataGridView DataMotionsView;
         private System.Windows.Forms.Button AddMotion;
         private System.Windows.Forms.BindingSource programBindingSource;
+        private System.Windows.Forms.Button RemoveMotionButton;
     }
 }
 
