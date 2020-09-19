@@ -88,7 +88,7 @@ namespace MotionView
             catch (Exception exception)
             {
                 MessageBox.Show($"{exception.Message} " +
-                     $"\nВведите десятичное число!!(Через запятую)");
+                     $"\nВведите десятичное число!(Через запятую)");
             }
         }
 

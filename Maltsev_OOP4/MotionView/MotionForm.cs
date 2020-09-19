@@ -242,7 +242,7 @@ namespace MotionView
             catch (Exception exception)
             {
                 MessageBox.Show($"{exception.Message} "
-                    + $"\nВведите десятичное неотрицательное число через запятую");
+                    + $"\nВведите десятичное число через запятую");
             }
         }
 
