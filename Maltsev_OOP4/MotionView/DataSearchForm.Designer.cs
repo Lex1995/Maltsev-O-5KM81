@@ -59,7 +59,6 @@
             this.DataSerchMotionVew.ReadOnly = true;
             this.DataSerchMotionVew.Size = new System.Drawing.Size(378, 149);
             this.DataSerchMotionVew.TabIndex = 0;
-            this.DataSerchMotionVew.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataSerchMotionVew_CellContentClick);
             // 
             // RadioButtonInitialCoordinate
             // 
@@ -134,6 +133,8 @@
             this.Controls.Add(this.RadioButtonInitialCoordinate);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DataSearchForm";
             this.Text = "Поиск";
             this.Load += new System.EventHandler(this.DataSearchForm_Load);

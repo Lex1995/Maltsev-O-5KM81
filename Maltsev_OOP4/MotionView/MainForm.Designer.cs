@@ -141,6 +141,8 @@
             this.Controls.Add(this.AddMotion);
             this.Controls.Add(this.MotionsGroupbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Виды движения";
             this.Load += new System.EventHandler(this.MainForm_Load);

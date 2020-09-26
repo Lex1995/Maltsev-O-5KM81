@@ -34,7 +34,7 @@ namespace MotionView
         {
             get
             {
-                return _motion;
+                    return _motion;
             }
         }
 
@@ -55,9 +55,7 @@ namespace MotionView
         {
             _motion = new UniformMotion();
             RadioButtonUniformMotion.Checked = true;
-            labelPressEnter.Visible = false;
-            DisplayData();
-            
+            labelPressEnter.Visible = false;           
         }
 
         /// <summary>
@@ -83,7 +81,6 @@ namespace MotionView
 
             _motion = new UniformMotion(_motion.InitialCoordinate, 
                                                 _motion.Time);
-            DisplayData();
         }
 
         /// <summary>
@@ -109,7 +106,6 @@ namespace MotionView
 
             _motion = new UniformAcceleratedMotion(_motion.InitialCoordinate, 
                                                         _motion.Time);
-            DisplayData();
         }
 
         /// <summary>
@@ -149,33 +145,31 @@ namespace MotionView
             TextBoxCalculatedCoordinate.Text =
                 _motion.CalculatedCoordinate.ToString();
 
-            if (_motion is UniformMotion)
+            if (_motion is UniformMotion uniformMotion)
             {
                 TexBoxSpeed.Text =
-                     ((UniformMotion)_motion).Speed.ToString();
+                    uniformMotion.Speed.ToString();
             }
 
-            if (_motion is UniformAcceleratedMotion)
+            if (_motion is UniformAcceleratedMotion uniformAcceleratedMotion)
             {
-                TexBoxSpeed.Text =
-                    ((UniformAcceleratedMotion)_motion).
+                TexBoxSpeed.Text = uniformAcceleratedMotion.
                     InitialSpeed.ToString();
 
-                TextBoxAcceleration.Text =
-                    ((UniformAcceleratedMotion)_motion).
+                TextBoxAcceleration.Text = uniformAcceleratedMotion.
                     Acceleration.ToString();
             }
 
-            if (_motion is OscillatoryMotion)
+            if (_motion is OscillatoryMotion oscillatoryMotion)
             {
                 TextBoxMagnitude.Text =
-                    ((OscillatoryMotion)_motion).Magnitude.ToString();
+                    oscillatoryMotion.Magnitude.ToString();
 
                 TextBoxFrequency.Text =
-                    ((OscillatoryMotion)_motion).Frequency.ToString();
+                    oscillatoryMotion.Frequency.ToString();
 
                 TextBoxInitialPhase.Text =
-                    ((OscillatoryMotion)_motion).InitialPhase.ToString();
+                    oscillatoryMotion.InitialPhase.ToString();
             }
         }
 
@@ -201,36 +195,37 @@ namespace MotionView
 
             try
             {
+                //TODO: - исправлено
                 _motion.InitialCoordinate =
                     Convert.ToDouble(TextBoxInitialCoordinate.Text);
 
                 _motion.Time =
                     Convert.ToDouble(TextBoxInitialTime.Text);
 
-                if (_motion is UniformMotion)
+                if (_motion is UniformMotion uniformMotion)
                 {
-                    ((UniformMotion)_motion).Speed =
+                    uniformMotion.Speed =
                         Convert.ToDouble(TexBoxSpeed.Text);
                 }
 
-                if (_motion is UniformAcceleratedMotion)
+                if (_motion is UniformAcceleratedMotion uniformAcceleratedMotion)
                 {
-                    ((UniformAcceleratedMotion)_motion).InitialSpeed =
+                    uniformAcceleratedMotion.InitialSpeed =
                         Convert.ToDouble(TexBoxSpeed.Text);
 
-                    ((UniformAcceleratedMotion)_motion).Acceleration =
+                    uniformAcceleratedMotion.Acceleration =
                         Convert.ToDouble(TextBoxAcceleration.Text);
                 }
 
-                if (_motion is OscillatoryMotion)
+                if (_motion is OscillatoryMotion oscillatoryMotion)
                 {
-                    ((OscillatoryMotion)_motion).Magnitude =
+                    oscillatoryMotion.Magnitude =
                         Convert.ToDouble(TextBoxMagnitude.Text);
 
-                    ((OscillatoryMotion)_motion).Frequency =
+                    oscillatoryMotion.Frequency =
                         Convert.ToDouble(TextBoxFrequency.Text);
 
-                    ((OscillatoryMotion)_motion).InitialPhase =
+                    oscillatoryMotion.InitialPhase =
                         Convert.ToDouble(TextBoxInitialPhase.Text);
                 }
 
@@ -241,6 +236,8 @@ namespace MotionView
 
             catch (Exception exception)
             {
+                _isCorrect = false;
+
                 MessageBox.Show($"{exception.Message} "
                     + $"\nВведите десятичное число через запятую");
             }
@@ -254,10 +251,13 @@ namespace MotionView
         private void AddMotionButton_Click(object sender, EventArgs e)
         {
             InsertData();
-
-            this.DialogResult = DialogResult.OK;
-
-            if (_isCorrect) Close();
+            
+            if (_isCorrect)
+            {
+                this.DialogResult = DialogResult.OK;
+                Close();
+            }
+                
         }
 
         /// <summary>
@@ -269,6 +269,5 @@ namespace MotionView
         {
             Close();
         }
-
     }
 }

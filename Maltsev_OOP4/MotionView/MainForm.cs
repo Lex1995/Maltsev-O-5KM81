@@ -162,6 +162,6 @@ namespace MotionView
         {
             var search = new DataSearchForm(_motions);
             search.Show();
-        }
+        }       
     }
 }

@@ -60,27 +60,18 @@ namespace MotionView
 
             try
             {
-                if (RadioButtonInitialCoordinate.Checked)
+                foreach (var row in _motions)
                 {
-                    foreach (var row in _motions)
-                    {
-                        if (row.InitialCoordinate ==
-                            Convert.ToDouble(TextBoxInsertValue.Text))
-                        {
-                            _motionSearch.Add(row);
-                        }
-                    }
-                }
+                    var isInitialCoordinateFinding = 
+                        RadioButtonInitialCoordinate.Checked 
+                        && row.InitialCoordinate == Convert.ToDouble(TextBoxInsertValue.Text);
+                    var isTimeFinding =
+                        !RadioButtonInitialCoordinate.Checked
+                        && row.Time == Convert.ToDouble(TextBoxInsertValue.Text);
 
-                else
-                {
-                    foreach (var row in _motions)
+                    if (isInitialCoordinateFinding || isTimeFinding)
                     {
-                        if (row.Time ==
-                            Convert.ToDouble(TextBoxInsertValue.Text))
-                        {
-                            _motionSearch.Add(row);
-                        }
+                        _motionSearch.Add(row);
                     }
                 }
             }
@@ -133,11 +124,6 @@ namespace MotionView
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void DataSerchMotionVew_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
