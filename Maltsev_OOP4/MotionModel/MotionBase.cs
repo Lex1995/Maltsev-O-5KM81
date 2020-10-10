@@ -40,7 +40,7 @@ namespace MotionModel
             }
             set
             {
-                _initialCoordinate = NanChecking(value);
+                _initialCoordinate = NanChecking(value, "Начальная координата");
             }
         }
 
@@ -56,7 +56,7 @@ namespace MotionModel
 
             set
             {
-               _time = NanAndNegativeChecking(value);
+               _time = NanAndNegativeChecking(value, "Время");
             }
         }
 
@@ -80,18 +80,18 @@ namespace MotionModel
         /// </summary>
         /// <param name="value">число</param>
         /// <returns>проверенное числовое значение</returns>
-        protected double NanAndNegativeChecking(double value)
+        protected double NanAndNegativeChecking(double value, string propertyName)
         {
             if (double.IsNaN(value) || double.IsInfinity(value))
             {
-                throw new ArgumentException(
-                    "Значение не может быть неопределенным");
+                throw new ArgumentException(propertyName +
+                    " не может быть неопределенным");
             }
 
             if (value < 0)
             {
-                throw new ArgumentException(
-                    "Значение не может быть отрицательным");
+                throw new ArgumentException(propertyName + 
+                    " не может быть отрицательным");
             }
 
             return value;
@@ -102,12 +102,12 @@ namespace MotionModel
         /// </summary>
         /// <param name="value">число</param>
         /// <returns>проверенное числовое значение</returns>
-        protected double NanChecking(double value)
+        protected double NanChecking(double value, string propertyName)
         {
             if (double.IsNaN(value) || double.IsInfinity(value))
             {
                 throw new ArgumentException(
-                    "Значение не может быть неопределенным");
+                    $"{nameof(propertyName)} не может быть неопределенным");
             }
 
             return value;

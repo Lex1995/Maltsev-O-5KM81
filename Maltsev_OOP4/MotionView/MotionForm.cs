@@ -34,7 +34,7 @@ namespace MotionView
         {
             get
             {
-                    return _motion;
+                return _motion;
             }
         }
 
@@ -66,21 +66,11 @@ namespace MotionView
         private void RadioButtonUniformMotion_CheckedChanged(
                         object sender, EventArgs e)
         {
-            TextBoxAcceleration.Visible = false;
-            TextBoxFrequency.Visible = false;
-            TextBoxInitialPhase.Visible = false;
-            TextBoxMagnitude.Visible = false;
-            TexBoxSpeed.Visible = true;
-
-            labelAcceleration.Visible = false;
-            labelFrequency.Visible = false;
-            labelInitialPhase.Visible = false;
-            labelMagnitude.Visible = false;
-            labelPressEnter.Visible = true;
-            labelSpeed.Visible = true;
-
+            //TODO: Дубль - исправлено
             _motion = new UniformMotion(_motion.InitialCoordinate, 
                                                 _motion.Time);
+
+            SetVisible(_motion);
         }
 
         /// <summary>
@@ -91,21 +81,11 @@ namespace MotionView
         private void RadioButtonUniformAcceleratedMotion_CheckedChanged(
                                 object sender, EventArgs e)
         {
-            TextBoxFrequency.Visible = false;
-            TextBoxInitialPhase.Visible = false;
-            TextBoxMagnitude.Visible = false;
-            TexBoxSpeed.Visible = true;
-            TextBoxAcceleration.Visible = true;
-
-            labelFrequency.Visible = false;
-            labelInitialPhase.Visible = false;
-            labelMagnitude.Visible = false;
-            labelPressEnter.Visible = true;
-            labelSpeed.Visible = true;
-            labelAcceleration.Visible = true;
-
+            //TODO: Дубль - исправлено
             _motion = new UniformAcceleratedMotion(_motion.InitialCoordinate, 
                                                         _motion.Time);
+
+            SetVisible(_motion);
         }
 
         /// <summary>
@@ -116,21 +96,11 @@ namespace MotionView
         private void RadioButtonOscillatoryMotion_CheckedChanged(
                             object sender, EventArgs e)
         {
-            TexBoxSpeed.Visible = false;
-            TextBoxAcceleration.Visible = false;
-            TextBoxFrequency.Visible = true;
-            TextBoxInitialPhase.Visible = true;
-            TextBoxMagnitude.Visible = true;
-
-            labelFrequency.Visible = true;
-            labelInitialPhase.Visible = true;
-            labelMagnitude.Visible = true;
-            labelSpeed.Visible = false;
-            labelAcceleration.Visible = false;
-            labelPressEnter.Visible = true;
-
+            //TODO: Дубль - исправлено
             _motion = new OscillatoryMotion(_motion.InitialCoordinate, 
                                                 _motion.Time);
+
+            SetVisible(_motion);
         }
 
 
@@ -191,54 +161,27 @@ namespace MotionView
         /// </summary>
         private void InsertData()
         {
-            _isCorrect = false;
+            _isCorrect = true;
 
-            try
+            //TODO: Адресность исключений - исправлено
+
+            if (_motion is UniformMotion)
             {
-                //TODO: - исправлено
-                _motion.InitialCoordinate =
-                    Convert.ToDouble(TextBoxInitialCoordinate.Text);
-
-                _motion.Time =
-                    Convert.ToDouble(TextBoxInitialTime.Text);
-
-                if (_motion is UniformMotion uniformMotion)
-                {
-                    uniformMotion.Speed =
-                        Convert.ToDouble(TexBoxSpeed.Text);
-                }
-
-                if (_motion is UniformAcceleratedMotion uniformAcceleratedMotion)
-                {
-                    uniformAcceleratedMotion.InitialSpeed =
-                        Convert.ToDouble(TexBoxSpeed.Text);
-
-                    uniformAcceleratedMotion.Acceleration =
-                        Convert.ToDouble(TextBoxAcceleration.Text);
-                }
-
-                if (_motion is OscillatoryMotion oscillatoryMotion)
-                {
-                    oscillatoryMotion.Magnitude =
-                        Convert.ToDouble(TextBoxMagnitude.Text);
-
-                    oscillatoryMotion.Frequency =
-                        Convert.ToDouble(TextBoxFrequency.Text);
-
-                    oscillatoryMotion.InitialPhase =
-                        Convert.ToDouble(TextBoxInitialPhase.Text);
-                }
-
-                DisplayData();
-
-                _isCorrect = true;
+                _motion = EnterUniformMotionParameteres();
             }
 
-            catch (Exception exception)
+            if (_motion is UniformAcceleratedMotion)
             {
-                MessageBox.Show($"{exception.Message} "
-                    + $"\nВведите десятичное число через запятую");
+                _motion = EnterUnifromAcceleratedMotionParameteres();
             }
+
+            if (_motion is OscillatoryMotion)
+            {
+                _motion = EnterOscillatoryMotionParameteres();
+            }
+
+            DisplayData();
+           
         }
 
         /// <summary>
@@ -254,8 +197,207 @@ namespace MotionView
             {
                 this.DialogResult = DialogResult.OK;
                 Close();
+            }                
+        }
+
+        /// <summary>
+        /// Установка видимых текстовых полей в зависимости от типа движения
+        /// </summary>
+        /// <param name="motion">уравнение движения</param>
+        private void SetVisible(MotionBase motion)
+        {
+            TexBoxSpeed.Visible = false;
+            TextBoxAcceleration.Visible = false;
+            TextBoxFrequency.Visible = false;
+            TextBoxInitialPhase.Visible = false;
+            TextBoxMagnitude.Visible = false;
+
+            labelFrequency.Visible = false;
+            labelInitialPhase.Visible = false;
+            labelMagnitude.Visible = false;
+            labelSpeed.Visible = false;
+            labelAcceleration.Visible = false;
+            labelPressEnter.Visible = true;
+
+            if (motion is UniformMotion)
+            {
+                TexBoxSpeed.Visible = true;
+                labelSpeed.Visible = true;
             }
+
+            if (motion is UniformAcceleratedMotion)
+            {
+                TexBoxSpeed.Visible = true;
+                TextBoxAcceleration.Visible = true;
+                labelSpeed.Visible = true;
+                labelAcceleration.Visible = true;
+            }
+
+            if (motion is OscillatoryMotion)
+            {
+                TextBoxFrequency.Visible = true;
+                TextBoxInitialPhase.Visible = true;
+                TextBoxMagnitude.Visible = true;
+                labelFrequency.Visible = true;
+                labelInitialPhase.Visible = true;
+                labelMagnitude.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Метод для ввода значений равномерного движения
+        /// </summary>
+        /// <returns></returns>
+        private UniformMotion EnterUniformMotionParameteres()
+        {
+            var motionParameters = new UniformMotion();
+            var actions = new List<Action>()
+            {
+                new Action(() =>
+                {
+                    motionParameters.InitialCoordinate = 
+                        EnterDoubleValue(TextBoxInitialCoordinate.Text);
+                }),
+
+                 new Action(() =>
+                {
+                    motionParameters.Time =
+                        EnterDoubleValue(TextBoxInitialTime.Text);
+                }),
+                 
+                new Action(() =>
+                {
+                    motionParameters.Speed = 
+                        EnterDoubleValue(TexBoxSpeed.Text);
+                })
+            };
+
+            actions.ForEach(SetValue);
+            return motionParameters;
+        }
+
+        /// <summary>
+        /// Ввод параметров равноускоренного движения
+        /// </summary>
+        /// <returns></returns>
+        private UniformAcceleratedMotion EnterUnifromAcceleratedMotionParameteres()
+        {
+            var motionParameters = new UniformAcceleratedMotion();
+            var actions = new List<Action>()
+            {
+                                new Action(() =>
+                {
+                    motionParameters.InitialCoordinate = 
+                        EnterDoubleValue(TextBoxInitialCoordinate.Text);
+                }),
+
+                new Action(() =>
+                {
+                    motionParameters.Time = 
+                        EnterDoubleValue(TextBoxInitialTime.Text);
+                }),
+
+                new Action(() =>
+                {
+                    motionParameters.InitialSpeed = 
+                        EnterDoubleValue(TexBoxSpeed.Text);
+                }),
+                new Action(() =>
+                {
+                    motionParameters.Acceleration = 
+                        EnterDoubleValue(TextBoxAcceleration.Text);
+                })
+
+
+            };
+
+            actions.ForEach(SetValue);
+            return motionParameters;
+        }
+
+        /// <summary>
+        /// Ввод параметров колебательного движения
+        /// </summary>
+        /// <returns></returns>
+        private OscillatoryMotion EnterOscillatoryMotionParameteres()
+        {
+            var motionParameters = new OscillatoryMotion();
+            var actions = new List<Action>()
+            {
+                new Action(() =>
+                {
+                    motionParameters.InitialCoordinate = 
+                        EnterDoubleValue(TextBoxInitialCoordinate.Text);
+                }),
+
+                new Action(() =>
+                {
+                    motionParameters.Time = 
+                        EnterDoubleValue(TextBoxInitialTime.Text);
+                }),
+               
+                new Action(() =>
+                {
+                    motionParameters.Frequency = 
+                        EnterDoubleValue(TextBoxFrequency.Text);
+                }),
+
+                new Action(() =>
+                {
+                    motionParameters.InitialPhase = 
+                        EnterDoubleValue(TextBoxInitialPhase.Text);
+                }),
+
+                new Action(() =>
+                {
+                    motionParameters.Magnitude = 
+                        EnterDoubleValue(TextBoxMagnitude.Text);
+                }),
                 
+            };
+
+            actions.ForEach(SetValue);
+            return motionParameters;
+        }
+
+        /// <summary>
+        /// Ввод дробного числа с заменой разделителя
+        /// </summary>
+        /// <param name="inputText"></param>
+        /// <returns></returns>
+        private double EnterDoubleValue(string inputText)
+        {
+            var buffer = double.Parse(inputText.Replace('.', ','));
+
+            return buffer;
+        }
+
+        /// <summary>
+        /// Задание значений при пользовательском вводе
+        /// </summary>
+        /// <param name="action">Делегат со значением параметра</param>
+        private void SetValue(Action action)
+        {
+            try
+            {
+                action.Invoke();
+                return;
+            }
+
+            catch (Exception exception)
+            {
+                _isCorrect = false;
+
+                if (exception is ArgumentException)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+
+                if (exception is FormatException)
+                {
+                    MessageBox.Show(exception.Message + " Введите число.");
+                }
+            }
         }
 
         /// <summary>

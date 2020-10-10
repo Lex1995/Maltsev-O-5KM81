@@ -42,7 +42,7 @@ namespace MotionModel
 
             set
             {
-                _initialSpeed = NanChecking(value);
+                _initialSpeed = NanChecking(value, "Начальная скорость");
             }
 
         }
@@ -60,7 +60,7 @@ namespace MotionModel
 
             set
             {
-                _acceleration = NanChecking(value); 
+                _acceleration = NanChecking(value, "Ускорение"); 
             }
         }
 

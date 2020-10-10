@@ -18,15 +18,42 @@ namespace MotionView
         private static Random _random = new Random();
 
         /// <summary>
+        /// Константа для максимального значения
+        /// </summary>
+        private const int _max = 1000;
+
+        /// <summary>
+        /// Константа для минимального значения
+        /// </summary>
+        private const int _min = 0;
+
+        /// <summary>
+        /// Константа шага
+        /// </summary>
+        private const int _step = 100;
+
+        /// <summary>
+        /// минимальное значение для формирования фазы
+        /// </summary>
+        private const int _minForDegree = -1800;
+
+        /// <summary>
+        /// Максимальное значение для формирования фазы
+        /// </summary>
+        private const int _maxForDegree = 1800;
+
+        /// <summary>
+        /// Шаг для формирования фазы
+        /// </summary>
+        private const int _stepForDegree = 10;
+
+        /// <summary>
         /// Метод для реализации рандомных параметров движения
         /// </summary>
         /// <returns>объект класса MotionBase</returns>
         public static MotionBase GetRandomMotion()
         {
             int typeMotion = _random.Next(0, 3);
-
-            //TODO switch case - исправлено
-            //TODO: Duplication - исправлено
 
             switch (typeMotion)
             {
@@ -74,11 +101,12 @@ namespace MotionView
         /// <returns>Параметры равномерного движения</returns>
         private static MotionBase GetRandomUniformMotion()
         {
+            //TODO: Собрать в константы - исправлено
             var randomUniformMotion = new UniformMotion
             {
-                InitialCoordinate = GetRandomDouble(-1000, 1000, 100),
-                Time = GetRandomDouble(0, 1000, 100),
-                Speed = GetRandomDouble(-1000, 1000, 100)
+                InitialCoordinate = GetRandomDouble(-_max, _max, _step),
+                Time = GetRandomDouble(_min, _max, _step),
+                Speed = GetRandomDouble(-_max, _max, _step)
             };
 
             return randomUniformMotion;
@@ -94,12 +122,12 @@ namespace MotionView
                         new UniformAcceleratedMotion
                         {
                             InitialCoordinate =
-                                GetRandomDouble(-1000, 1000, 100),
-                            Time = GetRandomDouble(0, 1000, 100),
+                                GetRandomDouble(-_max, _max, _step),
+                            Time = GetRandomDouble(_min, _max, _step),
                             InitialSpeed =
-                                GetRandomDouble(-1000, 1000, 100),
+                                GetRandomDouble(-_max, _max, _step),
                             Acceleration =
-                                GetRandomDouble(-1000, 1000, 100)
+                                GetRandomDouble(-_max, _max, _step)
                         };
 
             return randomUniformAcceleratedMotion;
@@ -114,11 +142,12 @@ namespace MotionView
             var randomOscillatoryMotion = new OscillatoryMotion
             {
                 InitialCoordinate =
-                            GetRandomDouble(-1000, 1000, 100),
-                Time = GetRandomDouble(0, 1000, 100),
-                Magnitude = GetRandomDouble(0, 1000, 100),
-                Frequency = GetRandomDouble(0, 10000, 100),
-                InitialPhase = GetRandomDouble(-1800, 1800, 10)
+                            GetRandomDouble(-_max, _max, _step),
+                Time = GetRandomDouble(_min, _max, 100),
+                Magnitude = GetRandomDouble(_min, _max, _step),
+                Frequency = GetRandomDouble(_min, _max, _step),
+                InitialPhase = GetRandomDouble(_minForDegree, 
+                                    _maxForDegree, _stepForDegree)
             };
 
             return randomOscillatoryMotion;

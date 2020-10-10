@@ -36,7 +36,7 @@ namespace MotionModel
 
             set
             {                
-                _speed = NanChecking(value); 
+                _speed = NanChecking(value, "Скорость"); 
             }
         }
 

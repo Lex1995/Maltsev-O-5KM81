@@ -46,7 +46,7 @@ namespace MotionModel
 
             set
             {
-                _magnitude = NanAndNegativeChecking(value);
+                _magnitude = NanAndNegativeChecking(value, "Амплитуда");
             }
         }
 
@@ -62,7 +62,7 @@ namespace MotionModel
 
             set
             {
-                _initialPhase = NanChecking(value);
+                _initialPhase = NanChecking(value, "Начальная фаза");
             }
         }
 
@@ -78,7 +78,7 @@ namespace MotionModel
 
             set
             {
-                _frequency = NanAndNegativeChecking(value);
+                _frequency = NanAndNegativeChecking(value, "Частота");
             }
         }
 
