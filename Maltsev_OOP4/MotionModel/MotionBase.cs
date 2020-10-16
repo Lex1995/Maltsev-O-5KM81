@@ -107,7 +107,7 @@ namespace MotionModel
             if (double.IsNaN(value) || double.IsInfinity(value))
             {
                 throw new ArgumentException(
-                    $"{nameof(propertyName)} не может быть неопределенным");
+                    propertyName + "не может быть неопределенным");
             }
 
             return value;

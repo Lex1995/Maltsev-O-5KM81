@@ -64,10 +64,12 @@ namespace MotionView
                 {
                     var isInitialCoordinateFinding = 
                         RadioButtonInitialCoordinate.Checked 
-                        && row.InitialCoordinate == Convert.ToDouble(TextBoxInsertValue.Text);
+                        && row.InitialCoordinate == 
+                        Convert.ToDouble(TextBoxInsertValue.Text.Replace('.',','));
                     var isTimeFinding =
                         !RadioButtonInitialCoordinate.Checked
-                        && row.Time == Convert.ToDouble(TextBoxInsertValue.Text);
+                        && row.Time == 
+                        Convert.ToDouble(TextBoxInsertValue.Text.Replace('.', ','));
 
                     if (isInitialCoordinateFinding || isTimeFinding)
                     {
@@ -79,7 +81,7 @@ namespace MotionView
             catch (Exception exception)
             {
                 MessageBox.Show($"{exception.Message} " +
-                     $"\nВведите десятичное число!(Через запятую)");
+                     $"\nВведите число");
             }
         }
 
